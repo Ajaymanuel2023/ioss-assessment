@@ -127,6 +127,19 @@ def stats(code: str):
         clicks=row["clicks"],
         created_at=row["created_at"],
     )
+@app.get("/")
+def root():
+    return {
+        "message": "Welcome to the URL Shortener API 🚀",
+        "endpoints": {
+            "shorten (POST)": "/shorten",
+            "redirect": "/{short_code}",
+            "stats": "/stats/{short_code}",
+            "health": "/health"
+        },
+        "docs": "/docs"
+    }
+
 
 # ---------- Uvicorn entry (local dev only) ----------
 if __name__ == "__main__":
